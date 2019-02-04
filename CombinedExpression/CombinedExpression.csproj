@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Boolean.t4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Boolean.t4.tt</DependentUpon>
+    </None>
+    <None Include="Composite.t4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Composite.t4.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Boolean.t4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Boolean.t4.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Composite.t4.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Composite.t4.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Boolean.t4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Boolean.t4.cs</LastGenOutput>
+    </None>
+    <None Update="Composite.t4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Composite.t4.cs</LastGenOutput>
+    </None>
+    <None Update="Tools.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Tools.txt</LastGenOutput>
+    </None>
+    <None Update="Tools.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Tools.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+</Project>

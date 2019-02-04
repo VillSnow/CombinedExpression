@@ -1,0 +1,42 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+
+namespace CombinedExpression
+{
+	public static partial class ExpressionOperators
+	{
+
+<#	for (int n=1; n<=8; n++) {																#>
+<#		string ps = string.Join(", ", Enumerable.Range(1, n).Select(i => $"T{i}"));			#>
+		public static Expression<Func<<#=ps#>, bool>> AndAlso<<#=ps#>>(this LambdaExpression first, params LambdaExpression[] rest) {
+			return (Expression<Func<<#=ps#>, bool>>)AndAlso(first, rest);
+		}
+
+		public static Expression<Func<<#=ps#>, bool>> AndAlso<<#=ps#>>(this LambdaExpression first, IEnumerable<LambdaExpression> rest) {
+			return (Expression<Func<<#=ps#>, bool>>)AndAlso(first, rest);
+		}
+
+<# }																						#>
+
+<#	for (int n=1; n<=8; n++) {																#>
+<#		string ps = string.Join(", ", Enumerable.Range(1, n).Select(i => $"T{i}"));			#>
+		public static Expression<Func<<#=ps#>, bool>> OrElse<<#=ps#>>(this LambdaExpression first, params LambdaExpression[] rest) {
+			return (Expression<Func<<#=ps#>, bool>>)OrElse(first, rest);
+		}
+
+		public static Expression<Func<<#=ps#>, bool>> OrElse<<#=ps#>>(this LambdaExpression first, IEnumerable<LambdaExpression> rest) {
+			return (Expression<Func<<#=ps#>, bool>>)OrElse(first, rest);
+		}
+
+<# }																						#>
+
+	}
+}

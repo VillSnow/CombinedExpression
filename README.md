@@ -12,7 +12,7 @@ Composite expressions of function.
     Expression<Func<int, int>> f1 = x => x + 1;
     Expression<Func<int, int>> f2 = y => y - 1;
     Expression<Func<int, int, int>> g = (xi, eta) => xi * eta;
-    var c = g.Composite<int, int, int>(f1, f2); // (int x, int y) => (x + 1) * (x - 1)
+    var c = g.Composite<int, int, int>(f1, f2); // (int x, int y) => (x + 1) * (y - 1)
 
 Same parameters are reduced into single parameter.
 

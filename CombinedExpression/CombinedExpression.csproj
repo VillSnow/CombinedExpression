@@ -3,6 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <Authors>Vill. Snow</Authors>
+    <Company></Company>
+    <Copyright>Vill. Snow</Copyright>
+    <Description>Simple Library to combine System.Linq.Expressions.LambdaExpression. Useful for Entity Framework or others.</Description>
+    <PackageProjectUrl>https://github.com/VillSnow/CombinedExpression</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/VillSnow/CombinedExpression/blob/master/LICENSE</PackageLicenseUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

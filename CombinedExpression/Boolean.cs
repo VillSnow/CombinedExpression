@@ -27,14 +27,21 @@ namespace CombinedExpression
 		static LambdaExpression AndAlsoImpl(LambdaExpression first, IEnumerable<LambdaExpression> rest) {
 
 			LambdaExpression acc = first;
+
 			foreach (var item in rest) {
+				var ps = acc.Parameters.Concat(item.Parameters).ToList();
+				var dups = Helper.DuplicatedParameters(ps);
+				if (dups.Any()) {
+					throw new ArgumentException($"Some parameters are same name buf differ type: {dups.First().First().Name}");
+				}
+
 				var visitor = new MyVisitor(acc.Parameters.Concat(item.Parameters));
 				acc = Expression.Lambda(
 					Expression.AndAlso(
 						visitor.Visit(acc.Body),
 						visitor.Visit(item.Body)
 					),
-					acc.Parameters.Concat(item.Parameters).Select(visitor.Selector)
+					 ps.Select(visitor.Selector).MyDistinct()
 				);
 			}
 
@@ -61,13 +68,19 @@ namespace CombinedExpression
 
 			LambdaExpression acc = first;
 			foreach (var item in rest) {
-				var visitor = new MyVisitor(acc.Parameters.Concat(item.Parameters));
+				var ps = acc.Parameters.Concat(item.Parameters).ToList();
+				var dups = Helper.DuplicatedParameters(ps);
+				if (dups.Any()) {
+					throw new ArgumentException($"Some parameters are same name buf differ type: {dups.First().First().Name}");
+				}
+
+				var visitor = new MyVisitor(ps);
 				acc = Expression.Lambda(
 					Expression.OrElse(
 						visitor.Visit(acc.Body),
 						visitor.Visit(item.Body)
 					),
-					acc.Parameters.Concat(item.Parameters).Select(visitor.Selector)
+					ps.Select(visitor.Selector).MyDistinct()
 				);
 			}
 

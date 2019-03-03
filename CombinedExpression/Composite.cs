@@ -36,10 +36,9 @@ namespace CombinedExpression
 
 			var ps = fs.SelectMany(e => e.Parameters).ToList();
 
-			var dups = ps.SelectMany(lhs => ps.Select(rhs => (lhs, rhs)))
-				.Where(tuple => tuple.lhs.Name == tuple.rhs.Name && tuple.lhs.Type != tuple.rhs.Type);
+			var dups = Helper.DuplicatedParameters(ps);
 			if (dups.Any()) {
-				throw new ArgumentException($"Some parameters are same name buf differ type: {dups.First().lhs.Name}");
+				throw new ArgumentException($"Some parameters are same name buf differ type: {dups.First().First().Name}");
 			}
 
 			var visitor = new MyVisitor(ps);
@@ -53,17 +52,10 @@ namespace CombinedExpression
 						)
 					)
 				),
-				MyDistinct(ps.Select(visitor.Selector))
+				ps.Select(visitor.Selector).MyDistinct()
 			);
 
-			IEnumerable<T> MyDistinct<T>(IEnumerable<T> src) {
-				List<T> list = new List<T>();
-				foreach (var item in src) {
-					if (list.Contains(item)) { continue; }
-					list.Add(item);
-					yield return item;
-				}
-			}
+			
 		}
 
 

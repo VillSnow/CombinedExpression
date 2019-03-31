@@ -24,6 +24,7 @@ namespace CombinedExpression.UnitTests
 		}
 
 		[TestMethod]
+		[Obsolete]
 		public void TestMethod2() {
 			var random = new Random();
 			foreach (var _ in Enumerable.Range(0, 10)) {

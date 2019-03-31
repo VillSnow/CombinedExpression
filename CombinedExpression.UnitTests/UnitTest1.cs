@@ -12,6 +12,7 @@ namespace CombinedExpression.UnitTests
 		public TestContext TestContext { get; set; }
 
 		[TestMethod]
+		[Obsolete]
 		public void Case01() {
 			var random = new Random();
 			foreach (var _ in Enumerable.Range(0, 10)) {
@@ -30,6 +31,7 @@ namespace CombinedExpression.UnitTests
 		}
 
 		[TestMethod]
+		[Obsolete]
 		public void Case02() {
 			var random = new Random();
 			foreach (var _ in Enumerable.Range(0, 10)) {
@@ -47,6 +49,7 @@ namespace CombinedExpression.UnitTests
 		}
 
 		[TestMethod]
+		[Obsolete]
 		public void Case03() {
 			var random = new Random();
 			foreach (var _ in Enumerable.Range(0, 10)) {
@@ -64,6 +67,7 @@ namespace CombinedExpression.UnitTests
 		}
 
 		[TestMethod]
+		[Obsolete]
 		public void Case04() {
 			var random = new Random();
 			foreach (var _ in Enumerable.Range(0, 10)) {
@@ -81,6 +85,7 @@ namespace CombinedExpression.UnitTests
 		}
 
 		[TestMethod]
+		[Obsolete]
 		[ExpectedException(typeof(ArgumentException))]
 		public void Case05() {
 			try {
@@ -95,6 +100,7 @@ namespace CombinedExpression.UnitTests
 		}
 
 		[TestMethod]
+		[Obsolete]
 		public void Case06() {
 			var random = new Random();
 			foreach (var _ in Enumerable.Range(0, 10)) {
@@ -114,6 +120,7 @@ namespace CombinedExpression.UnitTests
 		}
 
 		[TestMethod]
+		[Obsolete]
 		public void Case07() {
 			var random = new Random();
 			foreach (var _ in Enumerable.Range(0, 10)) {

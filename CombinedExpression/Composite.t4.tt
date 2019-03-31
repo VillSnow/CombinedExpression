@@ -20,7 +20,7 @@ namespace CombinedExpression
 		/// </summary>
 		/// <param name="fs">to be applied first</param>
 		/// <param name="g">to be applied second</param>
-		public static Expression<Func<<#=ps#>, TResult>> Composite<<#=ps#>, TResult>(this LambdaExpression g, params LambdaExpression[] fs) {
+		[Obsolete] public static Expression<Func<<#=ps#>, TResult>> Composite<<#=ps#>, TResult>(this LambdaExpression g, params LambdaExpression[] fs) {
 			return (Expression<Func<<#=ps#>, TResult>>)CompositeImpl(g, fs);
 		}
 <# }																						#>
@@ -32,7 +32,7 @@ namespace CombinedExpression
 		/// </summary>
 		/// <param name="fs">to be applied first</param>
 		/// <param name="g">to be applied second</param>
-		public static Expression<Func<<#=ps#>, TResult>> Composite<<#=ps#>, TResult>(this LambdaExpression g, IEnumerable<LambdaExpression> fs) {
+		[Obsolete] public static Expression<Func<<#=ps#>, TResult>> Composite<<#=ps#>, TResult>(this LambdaExpression g, IEnumerable<LambdaExpression> fs) {
 			return (Expression<Func<<#=ps#>, TResult>>)CompositeImpl(g, fs);
 		}
 <# }																						#>
@@ -44,7 +44,7 @@ namespace CombinedExpression
 		/// </summary>
 		/// <param name="f">to be applied first</param>
 		/// <param name="g">to be applied second</param>
-		public static Expression<Func<<#=ps#>, TResult>> Then<<#=ps#>, TResult>(this LambdaExpression f, LambdaExpression g) {
+		[Obsolete] public static Expression<Func<<#=ps#>, TResult>> Then<<#=ps#>, TResult>(this LambdaExpression f, LambdaExpression g) {
 			return (Expression<Func<<#=ps#>, TResult>>)Then(f, g);
 		}
 <# }																						#>

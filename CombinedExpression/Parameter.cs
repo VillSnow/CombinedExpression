@@ -35,7 +35,7 @@ namespace CombinedExpression
 			return Expression.Lambda(visitor.Visit(expression.Body), ps);
 		}
 
-		class MyVisitor : ExpressionVisitor
+		internal class MyVisitor : ExpressionVisitor
 		{
 			public Func<ParameterExpression, ParameterExpression> Selector { get; set; } 
 

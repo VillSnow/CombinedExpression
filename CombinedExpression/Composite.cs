@@ -12,6 +12,7 @@ namespace CombinedExpression
 		/// </summary>
 		/// <param name="fs">to be applied first</param>
 		/// <param name="g">to be applied second</param>
+		[Obsolete]
 		public static LambdaExpression Composite(this LambdaExpression g, params LambdaExpression[] fs) {
 			return CompositeImpl(g, fs);
 		}
@@ -21,6 +22,7 @@ namespace CombinedExpression
 		/// </summary>
 		/// <param name="fs">to be applied first</param>
 		/// <param name="g">to be applied second</param>
+		[Obsolete]
 		public static LambdaExpression Composite(this LambdaExpression g, IEnumerable<LambdaExpression> fs) {
 			return CompositeImpl(g, fs);
 		}
@@ -55,7 +57,7 @@ namespace CombinedExpression
 				ps.Select(visitor.Selector).MyDistinct()
 			);
 
-			
+
 		}
 
 
@@ -65,6 +67,7 @@ namespace CombinedExpression
 		/// </summary>
 		/// <param name="f">to be applied first</param>
 		/// <param name="g">to be applied second</param>
+		[Obsolete]
 		public static LambdaExpression Then(this LambdaExpression f, LambdaExpression g) {
 			return Composite(g, f);
 		}

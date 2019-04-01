@@ -83,7 +83,7 @@ namespace CombinedExpression.UnitTests
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentException))]
+		[ExpectedException(typeof(Exception), AllowDerivedTypes = true)]
 		public void Case05() {
 			try {
 				var expr1 = Thunk.Create((int x, long y) => x + y);
@@ -110,7 +110,7 @@ namespace CombinedExpression.UnitTests
 				var expr3 = Thunk.Create((int x, int z) => 2 * x - z);
 
 				var expr4 = expr1.Compose(expr2, expr3).WithParams((int x, int y, int z) => default(int));
-				TestContext.WriteLine(expr4.Expression.ToString());
+				
 				Assert.AreEqual((2 * a + b) + 3 * (2 * a - c), expr4.Compile().Invoke(a, b, c));
 			}
 		}

@@ -33,32 +33,9 @@ namespace CombinedExpression
 			if (fs == null) { throw new ArgumentNullException(nameof(fs)); }
 			if (fs.Any(f => f is null)) { throw new ArgumentException(nameof(fs)); }
 
-			var ps = fs.SelectMany(f => f.lambda.Parameters).ToList();
-
-			ParameterExpression parameterSelector(ParameterExpression p) {
-				return ps.FirstOrDefault(x => x.Name == p.Name) ?? p;
-			}
-
-			var dups = Helper.DuplicatedParameters(ps);
-			if (dups.Any()) {
-				throw new ArgumentException($"Some parameters are same name buf differ type: {dups.First().First().Name}");
-			}
-
-			var visitor = new MyVisitor(p => {
-				var pos = lambda.Parameters.IndexOf(p);
-				if (pos != -1) {
-					return fs.ElementAt(pos).lambda.Body;
-				} else {
-					return parameterSelector(p);
-				}
-			});
-
-			return new Thunk(
-				System.Linq.Expressions.Expression.Lambda(
-					visitor.Visit(lambda.Body),
-					ps.Select(parameterSelector).MyDistinct()
-				)
-			);
+			var visitor = new LambdaUnwrapperVisitor(lambda, fs.Select(f => f.lambda).ToArray());
+			var resultLambda = (LambdaExpression)visitor.Visit(lambda);
+			return new Thunk(resultLambda);
 		}
 
 		Thunk WithParamsImpl(LambdaExpression prototype, WithParamsFlag flags) {
@@ -168,6 +145,48 @@ namespace CombinedExpression
 				minor.Visit(node.Body),
 				node.Parameters.Select(Selector).OfType<ParameterExpression>()
 			);
+		}
+	}
+
+	class LambdaUnwrapperVisitor : ExpressionVisitor
+	{
+		readonly int arity;
+		readonly LambdaExpression g;
+		readonly IReadOnlyList<LambdaExpression> fs;
+		readonly IReadOnlyCollection<ParameterExpression> prevPs;
+		readonly IReadOnlyList<ParameterExpression> postPs;
+
+		public LambdaUnwrapperVisitor(
+			LambdaExpression g,
+			IReadOnlyList<LambdaExpression> fs) {
+
+			arity = g.Parameters.Count();
+			if (fs.Count != arity) { throw new ArgumentException("Mismatched arity"); }
+
+			this.g = g;
+			this.fs = fs;
+			prevPs = fs.SelectMany(f => f.Parameters).ToList();
+			postPs = prevPs.DistinctParameters().ToArray();
+		}
+
+		protected override Expression VisitLambda<T>(Expression<T> node) {
+			Console.WriteLine($"{node.NodeType}: {node}");
+			if (node != g) { return base.VisitLambda(node); }
+
+			return Expression.Lambda(base.Visit(node.Body), postPs);
+		}
+
+		protected override Expression VisitParameter(ParameterExpression node) {
+			Console.WriteLine($"{node.NodeType}: {node}");
+			for (int i = 0; i < arity; i++) {
+				if (node == g.Parameters[i]) {
+					return base.Visit(fs[i].Body);
+				}
+			}
+			if (prevPs.Contains(node)) {
+				return postPs.Where(p => p.Name == node.Name).Single();
+			}
+			return node;
 		}
 	}
 }

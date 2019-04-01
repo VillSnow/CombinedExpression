@@ -26,6 +26,28 @@ namespace CombinedExpression
 			}
 		}
 
+		public static IEnumerable<ParameterExpression> DistinctParameters(this IEnumerable<ParameterExpression> source) {
+
+			var list = new List<ParameterExpression>();
+			return inner();
+
+			IEnumerable<ParameterExpression> inner() {
+				foreach (var item in source) {
+					if(list.Where(p=>p.Name== item.Name).SingleOrDefault() is ParameterExpression dup) {
+						if (dup.Type != item.Type) {
+							throw new InvalidOperationException($"Some parameters are same name buf differ type: {item.Name}");
+						} else {
+							continue;
+						}
+					} else {
+						list.Add(item);
+						yield return item;
+					}
+				}
+			}
+		}
+
+
 		public static IEnumerable<IReadOnlyList<ParameterExpression>> DuplicatedParameters(IEnumerable<ParameterExpression> parameters) {
 			if (parameters is IReadOnlyList<ParameterExpression> list) {
 				// do nothing

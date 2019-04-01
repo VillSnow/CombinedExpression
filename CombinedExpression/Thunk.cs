@@ -170,14 +170,12 @@ namespace CombinedExpression
 		}
 
 		protected override Expression VisitLambda<T>(Expression<T> node) {
-			Console.WriteLine($"{node.NodeType}: {node}");
 			if (node != g) { return base.VisitLambda(node); }
 
 			return Expression.Lambda(base.Visit(node.Body), postPs);
 		}
 
 		protected override Expression VisitParameter(ParameterExpression node) {
-			Console.WriteLine($"{node.NodeType}: {node}");
 			for (int i = 0; i < arity; i++) {
 				if (node == g.Parameters[i]) {
 					return base.Visit(fs[i].Body);

@@ -58,46 +58,55 @@ namespace CombinedExpression
 	public class Thunk<TResult> : Thunk
 	{
 		public Thunk(Expression<Func<TResult>> lambda) : base(lambda) { }
+		public new Expression<Func<TResult>> Expression => (Expression<Func<TResult>>)base.Expression;
 		public Func<TResult> Compile() => ((Expression<Func<TResult>>)lambda).Compile();
 	}
 	public class Thunk<T1, TResult> : Thunk
 	{
 		public Thunk(Expression<Func<T1, TResult>> lambda) : base(lambda) { }
+		public new Expression<Func<T1, TResult>> Expression => (Expression<Func<T1, TResult>>)base.Expression;
 		public Func<T1, TResult> Compile() => ((Expression<Func<T1, TResult>>)lambda).Compile();
 	}
 	public class Thunk<T1, T2, TResult> : Thunk
 	{
 		public Thunk(Expression<Func<T1, T2, TResult>> lambda) : base(lambda) { }
+		public new Expression<Func<T1, T2, TResult>> Expression => (Expression<Func<T1, T2, TResult>>)base.Expression;
 		public Func<T1, T2, TResult> Compile() => ((Expression<Func<T1, T2, TResult>>)lambda).Compile();
 	}
 	public class Thunk<T1, T2, T3, TResult> : Thunk
 	{
 		public Thunk(Expression<Func<T1, T2, T3, TResult>> lambda) : base(lambda) { }
+		public new Expression<Func<T1, T2, T3, TResult>> Expression => (Expression<Func<T1, T2, T3, TResult>>)base.Expression;
 		public Func<T1, T2, T3, TResult> Compile() => ((Expression<Func<T1, T2, T3, TResult>>)lambda).Compile();
 	}
 	public class Thunk<T1, T2, T3, T4, TResult> : Thunk
 	{
 		public Thunk(Expression<Func<T1, T2, T3, T4, TResult>> lambda) : base(lambda) { }
+		public new Expression<Func<T1, T2, T3, T4, TResult>> Expression => (Expression<Func<T1, T2, T3, T4, TResult>>)base.Expression;
 		public Func<T1, T2, T3, T4, TResult> Compile() => ((Expression<Func<T1, T2, T3, T4, TResult>>)lambda).Compile();
 	}
 	public class Thunk<T1, T2, T3, T4, T5, TResult> : Thunk
 	{
 		public Thunk(Expression<Func<T1, T2, T3, T4, T5, TResult>> lambda) : base(lambda) { }
+		public new Expression<Func<T1, T2, T3, T4, T5, TResult>> Expression => (Expression<Func<T1, T2, T3, T4, T5, TResult>>)base.Expression;
 		public Func<T1, T2, T3, T4, T5, TResult> Compile() => ((Expression<Func<T1, T2, T3, T4, T5, TResult>>)lambda).Compile();
 	}
 	public class Thunk<T1, T2, T3, T4, T5, T6, TResult> : Thunk
 	{
 		public Thunk(Expression<Func<T1, T2, T3, T4, T5, T6, TResult>> lambda) : base(lambda) { }
+		public new Expression<Func<T1, T2, T3, T4, T5, T6, TResult>> Expression => (Expression<Func<T1, T2, T3, T4, T5, T6, TResult>>)base.Expression;
 		public Func<T1, T2, T3, T4, T5, T6, TResult> Compile() => ((Expression<Func<T1, T2, T3, T4, T5, T6, TResult>>)lambda).Compile();
 	}
 	public class Thunk<T1, T2, T3, T4, T5, T6, T7, TResult> : Thunk
 	{
 		public Thunk(Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>> lambda) : base(lambda) { }
+		public new Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>> Expression => (Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>>)base.Expression;
 		public Func<T1, T2, T3, T4, T5, T6, T7, TResult> Compile() => ((Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>>)lambda).Compile();
 	}
 	public class Thunk<T1, T2, T3, T4, T5, T6, T7, T8, TResult> : Thunk
 	{
 		public Thunk(Expression<Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult>> lambda) : base(lambda) { }
+		public new Expression<Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult>> Expression => (Expression<Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult>>)base.Expression;
 		public Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult> Compile() => ((Expression<Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult>>)lambda).Compile();
 	}
 

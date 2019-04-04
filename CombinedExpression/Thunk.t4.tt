@@ -36,6 +36,7 @@ namespace CombinedExpression
 	public class Thunk<<#=ts#>> : Thunk
 	{
 		public Thunk(Expression<Func<<#=ts#>>> lambda) : base(lambda) { }
+		public new Expression<Func<<#=ts#>>> Expression => (Expression<Func<<#=ts#>>>)base.Expression;
 		public Func<<#=ts#>> Compile() => ((Expression<Func<<#=ts#>>>)lambda).Compile();
 	}
 <#	}																								#>

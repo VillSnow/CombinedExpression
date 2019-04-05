@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/VillSnow/CombinedExpression</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/VillSnow/CombinedExpression/blob/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.0-alpha01</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

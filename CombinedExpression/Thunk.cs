@@ -22,11 +22,6 @@ namespace CombinedExpression
 
 		public Thunk Then(Thunk g) => g.Compose(this);
 
-		public Thunk<TResult> WithParams<TResult>(Expression<TResult> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
-			return new Thunk<TResult>((Expression<Func<TResult>>)WithParamsImpl(prototype, flags).lambda);
-		}
-
-
 		Thunk ComposeImpl(IEnumerable<Thunk> fs) {
 			fs = (fs is IReadOnlyList<LambdaExpression>) ? fs : fs?.ToArray(); // ensure is evaluated
 

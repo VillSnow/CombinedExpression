@@ -160,5 +160,27 @@ namespace CombinedExpression.UnitTests
 				Assert.AreEqual(1, logs.Count(s => s.Contains("SELECT")));
 			}
 		}
+
+		[TestMethod]
+		public void Case04() {
+			using (var db = new BlogDbContext(dbName)) {
+				List<string> logs = new List<string>();
+				var logger = new CommandExecutingLoggerProvider(logs.Add);
+				logger.AddTo(db);
+
+				var cond1 = Thunk.Create((Article x) => x.Content.Contains("qwe"));
+				var cond2 = Thunk.Create((Article x) => x.Content.Contains("asd"));
+				var cond = Thunk.Create((bool x, bool y) => x || y).Compose(cond1, cond2).WithParams((Article x) => default(bool));
+				var articles = db.Articles.Where(cond.Expression).Select(x => x.Title).ToList();
+
+				foreach (var item in logs) {
+					TestContext.WriteLine(item);
+					TestContext.WriteLine("");
+				}
+
+				CollectionAssert.AreEquivalent(new[] { "Article1", "Article2", }, articles);
+				Assert.AreEqual(1, logs.Count(s => s.Contains("SELECT")));
+			}
+		}
 	}
 }

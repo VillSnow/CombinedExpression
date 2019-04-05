@@ -86,5 +86,29 @@ namespace CombinedExpression
 
 			return acc;
 		}
+
+		public static Thunk AndAlso(this Thunk lhs, Thunk rhs) {
+			return Thunk.Create((bool x, bool y) => x && y).Compose(lhs, rhs);
+		}
+
+		public static Thunk AndAlso(params Thunk[] conditions) {
+			return conditions.Aggregate(AndAlso);
+		}
+
+		public static Thunk AndAlso(this IEnumerable<Thunk> conditions) {
+			return conditions.Aggregate(AndAlso);
+		}
+
+		public static Thunk OrElse(this Thunk lhs, Thunk rhs) {
+			return Thunk.Create((bool x, bool y) => x || y).Compose(lhs, rhs);
+		}
+
+		public static Thunk OrElse(params Thunk[] conditions) {
+			return conditions.Aggregate(AndAlso);
+		}
+
+		public static Thunk OrElse(this IEnumerable<Thunk> conditions) {
+			return conditions.Aggregate(AndAlso);
+		}
 	}
 }

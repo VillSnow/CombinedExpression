@@ -141,5 +141,24 @@ namespace CombinedExpression.UnitTests
 			}
 		}
 
+		[TestMethod]
+		public void Case03() {
+			using (var db = new BlogDbContext(dbName)) {
+				List<string> logs = new List<string>();
+				var logger = new CommandExecutingLoggerProvider(logs.Add);
+				logger.AddTo(db);
+
+				var articlesSelector = Thunk.Create<Auther, IEnumerable<Article>>(x => x.Articles);
+				var articles = db.Authers.SelectMany(articlesSelector.Expression).Select(x => x.Title).ToList();
+				CollectionAssert.AreEquivalent(new[] { "Article1", "Article2", "Article3" }, articles);
+
+				foreach (var item in logs) {
+					TestContext.WriteLine(item);
+					TestContext.WriteLine("");
+				}
+
+				Assert.AreEqual(1, logs.Count(s => s.Contains("SELECT")));
+			}
+		}
 	}
 }

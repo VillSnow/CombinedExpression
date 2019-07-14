@@ -29,6 +29,13 @@ namespace CombinedExpression
 		}
 <#	}																								#>
 
+<#	for(int n=0; n<=COUNT; ++n){																	#>
+<#		string ts = string.Concat(Enumerable.Range(1, n).Select(i => $"T{i}, ")) + "TResult";		#>
+		public Expression<Func<<#=ts#>>> ExpressionWithParams<<#=ts#>>(Expression<Func<<#=ts#>>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<<#=ts#>>>)WithParamsImpl(prototype, flags).lambda;
+		}
+<#	}																								#>
+
 	}
 
 <#	for(int n=0; n<=COUNT; ++n){																	#>

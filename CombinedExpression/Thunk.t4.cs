@@ -53,6 +53,34 @@ namespace CombinedExpression
 			return new Thunk<T1, T2, T3, T4, T5, T6, T7, T8, TResult>((Expression<Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult>>)WithParamsImpl(prototype, flags).lambda);
 		}
 
+		public Expression<Func<TResult>> ExpressionWithParams<TResult>(Expression<Func<TResult>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<TResult>>)WithParamsImpl(prototype, flags).lambda;
+		}
+		public Expression<Func<T1, TResult>> ExpressionWithParams<T1, TResult>(Expression<Func<T1, TResult>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<T1, TResult>>)WithParamsImpl(prototype, flags).lambda;
+		}
+		public Expression<Func<T1, T2, TResult>> ExpressionWithParams<T1, T2, TResult>(Expression<Func<T1, T2, TResult>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<T1, T2, TResult>>)WithParamsImpl(prototype, flags).lambda;
+		}
+		public Expression<Func<T1, T2, T3, TResult>> ExpressionWithParams<T1, T2, T3, TResult>(Expression<Func<T1, T2, T3, TResult>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<T1, T2, T3, TResult>>)WithParamsImpl(prototype, flags).lambda;
+		}
+		public Expression<Func<T1, T2, T3, T4, TResult>> ExpressionWithParams<T1, T2, T3, T4, TResult>(Expression<Func<T1, T2, T3, T4, TResult>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<T1, T2, T3, T4, TResult>>)WithParamsImpl(prototype, flags).lambda;
+		}
+		public Expression<Func<T1, T2, T3, T4, T5, TResult>> ExpressionWithParams<T1, T2, T3, T4, T5, TResult>(Expression<Func<T1, T2, T3, T4, T5, TResult>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<T1, T2, T3, T4, T5, TResult>>)WithParamsImpl(prototype, flags).lambda;
+		}
+		public Expression<Func<T1, T2, T3, T4, T5, T6, TResult>> ExpressionWithParams<T1, T2, T3, T4, T5, T6, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, TResult>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<T1, T2, T3, T4, T5, T6, TResult>>)WithParamsImpl(prototype, flags).lambda;
+		}
+		public Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>> ExpressionWithParams<T1, T2, T3, T4, T5, T6, T7, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<T1, T2, T3, T4, T5, T6, T7, TResult>>)WithParamsImpl(prototype, flags).lambda;
+		}
+		public Expression<Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult>> ExpressionWithParams<T1, T2, T3, T4, T5, T6, T7, T8, TResult>(Expression<Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult>> prototype, WithParamsFlag flags = WithParamsFlag.AssertOnly) {
+			return (Expression<Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult>>)WithParamsImpl(prototype, flags).lambda;
+		}
+
 	}
 
 	public class Thunk<TResult> : Thunk

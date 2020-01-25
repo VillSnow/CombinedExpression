@@ -104,11 +104,11 @@ namespace CombinedExpression
 		}
 
 		public static Thunk OrElse(params Thunk[] conditions) {
-			return conditions.Aggregate(AndAlso);
+			return conditions.Aggregate(OrElse);
 		}
 
 		public static Thunk OrElse(this IEnumerable<Thunk> conditions) {
-			return conditions.Aggregate(AndAlso);
+			return conditions.Aggregate(OrElse);
 		}
 	}
 }
